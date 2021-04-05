@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace test4fun
 {
@@ -9,7 +10,7 @@ namespace test4fun
             var charsToTake = 5;
             var finisher = "...";
 
-            return $"{text.Substring(0, charsToTake)}{finisher}";
+            return $"{new string(text.Take(charsToTake).ToArray())}{finisher}";
         }
     }
 }
