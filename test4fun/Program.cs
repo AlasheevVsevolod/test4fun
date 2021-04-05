@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace test4fun
@@ -42,7 +43,11 @@ namespace test4fun
             Console.WriteLine(Product.ProductType);
             fixed (char* ps = Product.ProductType)
             {
-                ps[0] = 'm';
+                var tempString = new string(Product.ProductType);
+                for (var i = 0; i < Product.ProductType.Length; i++)
+                {
+                    ps[i] = tempString.ElementAt(Product.ProductType.Length - i - 1);
+                }
             }
 
             Console.WriteLine(Product.ProductType);
