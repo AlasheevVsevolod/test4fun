@@ -6,7 +6,17 @@ namespace test4fun
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Task1();
+
+            Console.ReadLine();
+        }
+
+        private static void Task1()
+        {
+            var text = "Hello, world";
+            var modifiedText = text.Collapse();
+
+            Console.WriteLine($"{text}\t {modifiedText}");
         }
     }
 }
