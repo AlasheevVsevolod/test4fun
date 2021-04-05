@@ -22,7 +22,7 @@ namespace test4fun
             Console.WriteLine($"{text}\t {modifiedText}");
         }
 
-        private static void Task2()
+        private static unsafe void Task2()
         {
             var myProduct = new Product
             {
@@ -39,6 +39,13 @@ namespace test4fun
             myProduct.GetType().GetProperty("Name").SetValue(myProduct, "new name");
             Console.WriteLine($"{myProduct.Id}\t{myProduct.Name}");
 
+            Console.WriteLine(Product.ProductType);
+            fixed (char* ps = Product.ProductType)
+            {
+                ps[0] = 'm';
+            }
+
+            Console.WriteLine(Product.ProductType);
         }
     }
 }
