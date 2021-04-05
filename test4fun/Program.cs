@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace test4fun
 {
@@ -9,6 +10,8 @@ namespace test4fun
             Task1("Hello, world");
             Task1("Hel");
 
+            Task2();
+
             Console.ReadLine();
         }
 
@@ -17,6 +20,25 @@ namespace test4fun
             var modifiedText = text.Collapse();
 
             Console.WriteLine($"{text}\t {modifiedText}");
+        }
+
+        private static void Task2()
+        {
+            var myProduct = new Product
+            {
+                Name = "test name"
+            };
+
+            //CompileTime error
+            //myProduct._id
+
+            Console.WriteLine($"{myProduct.Id}\t{myProduct.Name}");
+            myProduct.GetType().GetField("_id", BindingFlags.NonPublic | BindingFlags.Instance)?.SetValue(myProduct, new Guid());
+            Console.WriteLine($"{myProduct.Id}\t{myProduct.Name}");
+
+            myProduct.GetType().GetProperty("Name").SetValue(myProduct, "new name");
+            Console.WriteLine($"{myProduct.Id}\t{myProduct.Name}");
+
         }
     }
 }
