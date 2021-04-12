@@ -2,7 +2,7 @@
 
 namespace hw2
 {
-    class Motorcycle
+    public class Motorcycle
     {
         public Guid Id { get; private set; }
         public string Model { get; set; }

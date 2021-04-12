@@ -1,10 +1,22 @@
-﻿namespace hw2
+﻿using System;
+
+namespace hw2
 {
     class Program
     {
         static void Main(string[] args)
         {
             var array = PopulateArray();
+
+            Func<Motorcycle, bool> filter1 = m => m.Odometer > 50000;
+            Func<Motorcycle, bool> filter2 = m => string.Equals(m.MadeIn, "China", StringComparison.InvariantCultureIgnoreCase);
+            Func<Motorcycle, bool> filter3 = m => m.Odometer > 25000 && string.Equals(m.MadeIn, "Japan", StringComparison.InvariantCultureIgnoreCase);
+
+            Console.WriteLine(array.MyFirstOrDefault(filter1).Odometer);
+            Console.WriteLine(array.MyFirstOrDefault(filter2).Odometer);
+            Console.WriteLine(array.MyFirstOrDefault(filter3).Odometer);
+
+            Console.ReadLine();
         }
 
         static Motorcycle[] PopulateArray()
